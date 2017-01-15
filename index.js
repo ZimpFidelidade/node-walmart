@@ -2,20 +2,23 @@
 
 const coreAPI = require('./lib/core');
 const Helpers = require('./lib/helper');
+const Products = require('./lib/products');
+const PreOrder = require('./lib/pre-order');
+const Order = require('./lib/order');
 const Joi = require('joi');
 
 var Walmart = {
 
-	validateData(data) {
-		const schema = Joi.object().keys({
-			code: Joi.string().alphanum().min(3).max(7),
-    		id: Joi.string().alphanum().min(64).max(64).required(),
-    		secret: Joi.string().alphanum().min(64).max(64).required(),
-		});
-		const result = Joi.validate(data, schema);
+	validateData(initializeData) {
+		const initialDataschema = Joi.object().keys({
+			code: Joi.string().alphanum().min(3).max(7).required(),  // eslint-disable-line no-magic-numbers
+			id: Joi.string().alphanum().min(64).max(64).required(),  // eslint-disable-line no-magic-numbers
+			secret: Joi.string().alphanum().min(64).max(64).required() // eslint-disable-line no-magic-numbers
+		}).required();
+		const validatedData = Joi.validate(initializeData, initialDataschema);
 
-		if(result.error) {
-			return Helpers.errorHandler('main', 'missingCredentials', result.error, true);
+		if(validatedData.error) {
+			return Helpers.errorHandler('main', 'missingCredentials', validatedData.error);
 		}
 	},
 
@@ -26,8 +29,11 @@ var Walmart = {
 
 		return Object.assign(
 			config,
+			Helpers,
 			coreInit,
-			Helpers
+			Products,
+			PreOrder,
+			Order
 		);
 	}
 
