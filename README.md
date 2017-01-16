@@ -23,14 +23,19 @@ $ npm install --save walmart-b2b
 
 ## How it works
 ```js
-const generatePassword = require('walmart-b2b');
+const walmart = require('walmart-b2b').init({
+	code: 123,
+	id: 'test',
+	secret: 'test'
+});
+
+walmart.getFullCatalog().then(console.log).catch(console.error);
+walmart.sendOrder(orderObj).then(console.log).catch(console.error);
 
 ```
 
 ## Tests
 `npm test`
-
-
 
 ## Contributing
 Please, check the [Contributing](CONTRIBUTING.md) documentation, there're just a few steps.
