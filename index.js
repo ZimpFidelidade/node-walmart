@@ -18,7 +18,7 @@ var Walmart = {
 		const validatedData = Joi.validate(initializeData, initialDataschema);
 
 		if(validatedData.error) {
-			return Helpers.errorHandler('main', 'missingCredentials', validatedData.error);
+			return Helpers.errorHandler('main', 'missingCredentials', validatedData.error, true);
 		}
 	},
 
@@ -39,4 +39,4 @@ var Walmart = {
 
 };
 
-module.exports = Walmart;
+module.exports.init = Walmart.init;
