@@ -18,7 +18,7 @@ lab.describe('init', () => {
 			code: "12345",
 			id: "u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3",
 			secret: "u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3"
-		}, 'development');
+		});
 
 		expect(libInit).to.be.an.object();
 		expect(libInit.env).to.be.equal('development');
@@ -31,7 +31,7 @@ lab.describe('init', () => {
 			code: "12345",
 			id: "u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3",
 			secret: "u5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpu5w9XbRSKa3aGSoIJ0wpKTS3"
-		});
+		}, 'production');
 
 		expect(libInit).to.be.an.object();
 		expect(libInit.env).to.be.equal('production');

@@ -6,12 +6,12 @@ const lib = require('../index');
 var libInit;
 
 const addressObj = {
-	address: "Av Nova independencia",
-	number: "37",
+	address: "Avenida Tamboré",
+	number: "267",
 	complement: "ap 113",
-	neighborhood: "Brooklyn novo",
-	postalCode: "04570000",
-	city: "São Paulo",
+	neighborhood: "Tamboré",
+	postalCode: "06460-000",
+	city: "Barueri",
 	state: "SP"
 };
 
@@ -155,7 +155,7 @@ lab.describe('sendOrder', () => {
 		});
 	});
 
-	lab.test('sendOrder with wrong SLA or erros form the API', { timeout: 10000 }, (done) => {
+	lab.test('sendOrder with wrong SLA or erros form the API', { timeout: 0 }, (done) => {
 		libInit.sendOrder({
 			payments: { total: 299.8, type: 'POST_PAID', billingAddress: addressObj },
 			skuList: [{
@@ -190,7 +190,7 @@ lab.describe('sendOrder', () => {
 		});
 	});
 
-	lab.test('sendOrder success', { timeout: 30000 }, (done) => {
+	lab.test('sendOrder success', { timeout: 0 }, (done) => {
 		let finalOrderObj = {
 			payments: { type: 'POST_PAID', billingAddress: addressObj },
 			skuList: [{
@@ -222,7 +222,7 @@ lab.describe('sendOrder', () => {
 		libInit.getPartialCatalog()
 			.then((products) => {
 				return libInit.simulateOrder({
-					postalCode: '04570000',
+					postalCode: '06460000',
 					payments: { type: 'POST_PAID' },
 					skuList: [{
 						skuId: products.products[0].skus[0].id,
@@ -249,7 +249,7 @@ lab.describe('sendOrder', () => {
 				expect(sendOrderResult.transactionId).to.be.an.string();
 				expect(sendOrderResult.orderId).to.be.an.number();
 				done();
-			});
+			}).catch(console.log);
 	});
 
 });

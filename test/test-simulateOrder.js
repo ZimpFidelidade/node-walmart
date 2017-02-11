@@ -5,6 +5,7 @@ const expect = require('code').expect;
 const lib = require('../index');
 var libInit;
 var skuObj = { skuId: "884418", sellerId: 1 };
+const postalCode = '06460-000';
 
 lab.describe('simulateOrder', () => {
 
@@ -31,7 +32,7 @@ lab.describe('simulateOrder', () => {
 	lab.test('simulateOrder error by INATICVE SKU', { timeout: 10000 }, (done) => {
 		skuObj.skuId = "123";
 		libInit.simulateOrder({
-			postalCode: '24470-170',
+			postalCode,
 			skuList: skuObj,
 			payments: { type: 'POST_PAID' }
 		}).catch((simulateError) => {
@@ -46,7 +47,7 @@ lab.describe('simulateOrder', () => {
 	lab.test('simulateOrder error by Unknow Error', { timeout: 10000 }, (done) => {
 		skuObj.skuId = "46393";
 		libInit.simulateOrder({
-			postalCode: '24470-170',
+			postalCode,
 			skuList: skuObj,
 			payments: { type: 'POST_PAID' }
 		}).catch((simulateError) => {
@@ -86,7 +87,7 @@ lab.describe('simulateOrder', () => {
 
 	lab.test('simulateOrder error with missing payment params', { timeout: 10000 }, (done) => {
 		libInit.simulateOrder({
-			postalCode: '24470-170',
+			postalCode,
 			skuList: skuObj
 		}).catch((simulateError) => {
 			expect(simulateError).to.be.an.object();
@@ -99,7 +100,7 @@ lab.describe('simulateOrder', () => {
 
 	lab.test('simulateOrder error with invalid seller', { timeout: 10000 }, (done) => {
 		libInit.simulateOrder({
-			postalCode: '24470-170',
+			postalCode,
 			skuList: [skuObj, { skuId: 46393, sellerId: 'vtex_loja_modelo' }],
 			payments: [{ type: 'POST_PAID' }]
 		}).catch((simulateError) => {
@@ -113,7 +114,7 @@ lab.describe('simulateOrder', () => {
 
 	lab.test('simulateOrder success', { timeout: 10000 }, (done) => {
 		libInit.simulateOrder({
-			postalCode: '04570000',
+			postalCode,
 			skuList: skuObj,
 			payments: { type: 'POST_PAID' }
 		}).then((simulateResult) => {
@@ -152,10 +153,10 @@ lab.describe('simulateOrder', () => {
 
 
 
-	lab.test('simulateOrder success with arrays', { timeout: 10000 }, (done) => {
+	lab.test('simulateOrder success with arrays', { timeout: 20000 }, (done) => {
 		libInit.simulateOrder({
-			postalCode: '04570000',
-			skuList: [skuObj, { skuId: "999", sellerId: 1 }],
+			postalCode,
+			skuList: [ skuObj ],
 			payments: [{ type: 'POST_PAID' }]
 		}).then((simulateResult) => {
 			expect(simulateResult).to.be.an.object();
@@ -188,7 +189,7 @@ lab.describe('simulateOrder', () => {
 			expect(simulateResult.itemsGroup.items[0].delivery.slas[0].duration.value).to.be.an.string();
 
 			done();
-		});
+		}).catch(console.log);
 	});
 
 });
