@@ -25,6 +25,10 @@ var Walmart = {
 	init(config, env) {
 		Walmart.validateData(config);
 
+		if(!env) {
+			env = 'development';
+		}
+
 		const coreInit = coreAPI.init(config, env);
 
 		return Object.assign(
