@@ -219,6 +219,15 @@ lab.describe('sendOrder', () => {
 			}
 		};
 
+		function retrySendOrder(orderObj) {
+			return libInit.sendOrder(orderObj)
+				.catch((sendOrderError) => {
+					if(sendOrderError.code === 'OMS_PLACE_ORDER_ERROR') {
+						return retrySendOrder(finalOrderObj);
+					}
+				});
+		}
+
 		libInit.getPartialCatalog()
 			.then((products) => {
 				return libInit.simulateOrder({
@@ -240,6 +249,11 @@ lab.describe('sendOrder', () => {
 				finalOrderObj.payments.totalValue = finalOrderObj.skuList[0].price.BRL + finalOrderObj.skuList[0].sla.price.BRL;
 
 				return libInit.sendOrder(finalOrderObj);
+			})
+			.catch((sendOrderError) => {
+				if(sendOrderError.code === 'OMS_PLACE_ORDER_ERROR') {
+					return retrySendOrder(finalOrderObj);
+				}
 			})
 			.then((sendOrderResult) => {
 				expect(sendOrderResult)
