@@ -8,7 +8,7 @@ A library for Walmart API
 
 ## Você trabalha no Walmart?
 
-Não de preocupe, este repositório não contem nenhuma informação sensível sendo apenas um empacotamento da API publica para clientes B2B para ser usado na plataforma Nodejs e não contém nenhuma chave de acesso, rotas privadas ou algo parecido. Caso você queira entrar em contato sobre este repositório você pode postar uma issue clicando aqui ou atravéz do email suporte@zimp.me
+Não se preocupe, este repositório não contem nenhuma informação sensível sendo apenas um empacotamento da API pública para clientes B2B para ser usado na plataforma Nodejs e não contém nenhuma chave de acesso, rotas privadas ou algo parecido. Caso você queira entrar em contato sobre este repositório você pode postar uma issue clicando aqui ou através do email suporte@zimp.me
 
 ## Suporte para API
 
