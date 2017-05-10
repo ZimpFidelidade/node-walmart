@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').load();
+
 const lab = exports.lab = require('lab').script();
 const expect = require('code').expect;
 const lib = require('../index');
