@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "eslint": "eslint --ignore-path .npmignore **/**/*.js --quiet",
+    "eslint": "eslint --ignore-path .npmignore . --quiet",
     "david": "david",
     "lab": "lab --verbose --colors --assert code -e development",
     "test-cov": "npm run lab -- -t 93 -r console -o stdout -r html -o coverage/coverage.html -r lcov -o coverage/lcov.info",
@@ -43,17 +43,17 @@
   "homepage": "https://github.com/ZimpFidelidade/node-walmart",
   "devDependencies": {
     "code": "4.0.0",
-    "coveralls": "2.11.16",
-    "david": "10.1.0",
+    "coveralls": "2.13.1",
+    "david": "11.0.0",
     "dotenv": "4.0.0",
-    "eslint": "3.15.0",
-    "lab": "12.1.0",
+    "eslint": "3.19.0",
+    "lab": "13.0.4",
     "pre-commit": "1.2.2"
   },
   "dependencies": {
     "@luanmuniz/password-generator": "1.0.3",
     "got": "6.7.1",
-    "joi": "10.2.2",
+    "joi": "10.4.1",
     "jszip": "2.6.1"
   }
 }
