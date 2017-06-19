@@ -11,8 +11,8 @@ var Walmart = {
 
 	validateData(initializeData) {
 		const initialDataschema = Joi.object().keys({
-			code: Joi.string().alphanum().min(3).max(7).required(),  // eslint-disable-line no-magic-numbers
-			id: Joi.string().alphanum().min(64).max(64).required(),  // eslint-disable-line no-magic-numbers
+			code: Joi.string().alphanum().min(3).max(7).required(), // eslint-disable-line no-magic-numbers
+			id: Joi.string().alphanum().min(64).max(64).required(), // eslint-disable-line no-magic-numbers
 			secret: Joi.string().alphanum().min(64).max(64).required() // eslint-disable-line no-magic-numbers
 		}).required();
 		const validatedData = Joi.validate(initializeData, initialDataschema);
